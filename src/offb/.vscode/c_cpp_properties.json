@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/orange/orange_ws/devel/include/**",
+                "/opt/ros/noetic/include/**",
+                "/home/orange/orange_ws/src/mavros/libmavconn/include/**",
+                "/home/orange/orange_ws/src/mavros/mavros/include/**",
+                "/home/orange/orange_ws/src/mavros/mavros_msgs/include/**",
+                "/home/orange/orange_ws/src/offb/include/**",
+                "/home/orange/orange_ws/src/mavros/test_mavros/include/**",
+                "/usr/include/**",
+                "/opt/ros/noetic/include"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}

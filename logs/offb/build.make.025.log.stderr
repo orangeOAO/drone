@@ -1,0 +1,64 @@
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:64:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Kposition[m[K’
+   64 |         pose_array[0].poses.[01;31m[Kposition[m[K.x = 5;
+      |                             [01;31m[K^~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:65:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Kposition[m[K’
+   65 |         pose_array[0].poses.[01;31m[Kposition[m[K.y = 1;
+      |                             [01;31m[K^~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:66:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Kposition[m[K’
+   66 |         pose_array[0].poses.[01;31m[Kposition[m[K.z = 1;
+      |                             [01;31m[K^~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:68:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Korientation[m[K’
+   68 |         pose_array[1].poses.[01;31m[Korientation[m[K.x = orientationX;
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:69:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Korientation[m[K’
+   69 |         pose_array[1].poses.[01;31m[Korientation[m[K.y = orientationY;
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:70:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Korientation[m[K’
+   70 |         pose_array[1].poses.[01;31m[Korientation[m[K.z = orientationZ;
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:71:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseArray_<std::allocator<void> >::_poses_type[m[K’ {aka ‘[01m[Kclass std::vector<geometry_msgs::Pose_<std::allocator<void> >, std::allocator<geometry_msgs::Pose_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Korientation[m[K’
+   71 |         pose_array[1].poses.[01;31m[Korientation[m[K.w = orientationW;
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/serialization.h:37[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/publisher.h:34[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/node_handle.h:32[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/ros.h:45[m[K,
+                 from [01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:7[m[K:
+/opt/ros/noetic/include/ros/message_traits.h: In instantiation of ‘[01m[Kstatic const char* ros::message_traits::MD5Sum<M>::value(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’:
+[01m[K/opt/ros/noetic/include/ros/message_traits.h:254:102:[m[K   required from ‘[01m[Kconst char* ros::message_traits::md5sum(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/opt/ros/noetic/include/ros/publisher.h:117:38:[m[K   required from ‘[01m[Kvoid ros::Publisher::publish(const M&) const [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:91:41:[m[K   required from here
+[01m[K/opt/ros/noetic/include/ros/message_traits.h:125:14:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[K__getMD5Sum[m[K’ in ‘[01m[Km[m[K’, which is of non-class type ‘[01m[Kconst geometry_msgs::PoseArray_<std::allocator<void> > [2][m[K’
+  125 |     return [01;31m[Km.__getMD5Sum[m[K().c_str();
+      |            [01;31m[K~~^~~~~~~~~~~[m[K
+/opt/ros/noetic/include/ros/message_traits.h: In instantiation of ‘[01m[Kstatic const char* ros::message_traits::DataType<M>::value(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’:
+[01m[K/opt/ros/noetic/include/ros/message_traits.h:263:104:[m[K   required from ‘[01m[Kconst char* ros::message_traits::datatype(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/opt/ros/noetic/include/ros/publisher.h:119:11:[m[K   required from ‘[01m[Kvoid ros::Publisher::publish(const M&) const [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:91:41:[m[K   required from here
+[01m[K/opt/ros/noetic/include/ros/message_traits.h:142:14:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[K__getDataType[m[K’ in ‘[01m[Km[m[K’, which is of non-class type ‘[01m[Kconst geometry_msgs::PoseArray_<std::allocator<void> > [2][m[K’
+  142 |     return [01;31m[Km.__getDataType[m[K().c_str();
+      |            [01;31m[K~~^~~~~~~~~~~~~[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/publisher.h:34[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/node_handle.h:32[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/ros.h:45[m[K,
+                 from [01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:7[m[K:
+/opt/ros/noetic/include/ros/serialization.h: In instantiation of ‘[01m[Kstatic uint32_t ros::serialization::Serializer<T>::serializedLength(typename boost::call_traits<T>::param_type) [with T = geometry_msgs::PoseArray_<std::allocator<void> > [2]; uint32_t = unsigned int; typename boost::call_traits<T>::param_type = const geometry_msgs::PoseArray_<std::allocator<void> >* const][m[K’:
+[01m[K/opt/ros/noetic/include/ros/serialization.h:180:41:[m[K   required from ‘[01m[Kuint32_t ros::serialization::serializationLength(const T&) [with T = geometry_msgs::PoseArray_<std::allocator<void> > [2]; uint32_t = unsigned int][m[K’
+[01m[K/opt/ros/noetic/include/ros/serialization.h:815:37:[m[K   required from ‘[01m[Kros::SerializedMessage ros::serialization::serializeMessage(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/opt/ros/noetic/include/ros/publisher.h:126:26:[m[K   required from ‘[01m[Kvoid ros::Publisher::publish(const M&) const [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:91:41:[m[K   required from here
+[01m[K/opt/ros/noetic/include/ros/serialization.h:145:14:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[KserializationLength[m[K’ in ‘[01m[Kt[m[K’, which is of pointer type ‘[01m[Kboost::call_traits<geometry_msgs::PoseArray_<std::allocator<void> > [2]>::param_type[m[K’ {aka ‘[01m[Kconst geometry_msgs::PoseArray_<std::allocator<void> >* const[m[K’} (maybe you meant to use ‘[01m[K->[m[K’ ?)
+  145 |     return [01;31m[Kt.serializationLength[m[K();
+      |            [01;31m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+/opt/ros/noetic/include/ros/serialization.h: In instantiation of ‘[01m[Kstatic void ros::serialization::Serializer<T>::write(Stream&, typename boost::call_traits<T>::param_type) [with Stream = ros::serialization::OStream; T = geometry_msgs::PoseArray_<std::allocator<void> > [2]; typename boost::call_traits<T>::param_type = const geometry_msgs::PoseArray_<std::allocator<void> >* const][m[K’:
+[01m[K/opt/ros/noetic/include/ros/serialization.h:155:23:[m[K   required from ‘[01m[Kvoid ros::serialization::serialize(Stream&, const T&) [with T = geometry_msgs::PoseArray_<std::allocator<void> > [2]; Stream = ros::serialization::OStream][m[K’
+[01m[K/opt/ros/noetic/include/ros/serialization.h:822:12:[m[K   required from ‘[01m[Kros::SerializedMessage ros::serialization::serializeMessage(const M&) [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/opt/ros/noetic/include/ros/publisher.h:126:26:[m[K   required from ‘[01m[Kvoid ros::Publisher::publish(const M&) const [with M = geometry_msgs::PoseArray_<std::allocator<void> > [2]][m[K’
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:91:41:[m[K   required from here
+[01m[K/opt/ros/noetic/include/ros/serialization.h:128:7:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kserialize[m[K’ in ‘[01m[Kt[m[K’, which is of pointer type ‘[01m[Kboost::call_traits<geometry_msgs::PoseArray_<std::allocator<void> > [2]>::param_type[m[K’ {aka ‘[01m[Kconst geometry_msgs::PoseArray_<std::allocator<void> >* const[m[K’} (maybe you meant to use ‘[01m[K->[m[K’ ?)
+  128 |     [01;31m[Kt.serialize[m[K(stream.getData(), 0);
+      |     [01;31m[K~~^~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/test_fly.dir/build.make:63: CMakeFiles/test_fly.dir/src/test_fly.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:290: CMakeFiles/test_fly.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

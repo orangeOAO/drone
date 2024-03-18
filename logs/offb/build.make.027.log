@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target test_fly[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/test_fly.dir/src/test_fly.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/orange/orange_ws/devel/.private/offb/lib/offb/test_fly[0m
+[100%] Built target test_fly

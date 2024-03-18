@@ -1,0 +1,13 @@
+<launch>
+
+	<!-- Include the MAVROS node with SITL and Gazebo -->
+	<!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/iris_obstacle.world"/> -->
+	<include file="$(find offb)/launch/mavros_posix_sitl.launch"></include>
+
+	<!-- <group ns="namespace2">
+		<node pkg="detect" type="cv_bridge_test" name="image_dept" required="true" output="screen"/>
+	</group> -->
+
+
+
+</launch>

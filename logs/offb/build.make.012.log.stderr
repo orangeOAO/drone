@@ -1,0 +1,7 @@
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/orange/orange_ws/src/offb/src/test_fly.cpp:73:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kmsg[m[K’ was not declared in this scope
+   73 |         [01;31m[Kmsg[m[K.pose.orientation.x = orientationX;
+      |         [01;31m[K^~~[m[K
+make[2]: *** [CMakeFiles/test_fly.dir/build.make:63: CMakeFiles/test_fly.dir/src/test_fly.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:290: CMakeFiles/test_fly.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2
