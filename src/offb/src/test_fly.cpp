@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
 
     // 设定点发布率必须快于2Hz
-    ros::Rate rate(20.0);
+    ros::Rate rate(2.0);
 
     // 等待与飞控单元的连接
     while(ros::ok() && !current_state.connected){
@@ -75,21 +75,26 @@ int main(int argc, char **argv)
 
     ros::Time last_request = ros::Time::now();
     ROS_INFO("OAO\n");
+    bool flag = true;
     while(ros::ok()){
-        
-        nh.getParam("robot_settings/x",robot_setting.x);
-        nh.getParam("robot_settings/y", robot_setting.y);
-        nh.getParam("robot_settings/z",robot_setting.z );
-        pose.pose.position.x = robot_setting.x;
-        pose.pose.position.y = robot_setting.y;
-        pose.pose.position.z = robot_setting.z;
+        if(flag)
+        {
+            ROS_INFO("ok\n , mode=%s");
+            flag = false;
+        }
+        // nh.getParam("robot_settings/x",robot_setting.x);
+        // nh.getParam("robot_settings/y", robot_setting.y);
+        // nh.getParam("robot_settings/z",robot_setting.z );
+        pose.pose.position.x = 1;
+        pose.pose.position.y = 1;
+        pose.pose.position.z = 1;
 
         //ROS_INFO("x=%.f, y=%.f, z=%.f\n",robot_setting.x, robot_setting.y, robot_setting.z);
 
         //ROS_INFO("%lf", (ros::Time::now() - last_request).toSec());
         //ROS_INFO("%s", current_state.mode.c_str());
         if( current_state.mode != "OFFBOARD" &&
-            (ros::Time::now() - last_request > ros::Duration(1.0))){
+            (ros::Time::now() - last_request > ros::Duration(5.0))){
             if( set_mode_client.call(offb_set_mode) &&
                 offb_set_mode.response.mode_sent){
                 ROS_INFO("Offboard mode enabled");
@@ -97,10 +102,9 @@ int main(int argc, char **argv)
             last_request = ros::Time::now();
         } else {
             if( !current_state.armed &&
-                (ros::Time::now() - last_request > ros::Duration(1.0))){
+                (ros::Time::now() - last_request > ros::Duration(5.0))){
                 if( arming_client.call(arm_cmd) &&
                     arm_cmd.response.success){
-                    
                     ROS_INFO("Vehicle armed");
                 }
                 last_request = ros::Time::now();

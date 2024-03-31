@@ -13,7 +13,7 @@
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
     <arg name="my_camera" default="iris_fusion"/>
-    <arg name="world" default="$(find offb)/worlds/test_obstacle.world"/>
+    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/test_obstacle.world"/> -->
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg my_camera)/$(arg my_camera).sdf"/>
     <!-- <arg name="my_camera" default="$(find mavlink_sitl_gazebo)/models/$(arg my_camera)/$(arg my_camera).sdf"/> -->
 
@@ -29,14 +29,14 @@
     <!-- PX4 configs -->
     <arg name="interactive" default="true"/>
     <!-- PX4 SITL and Gazebo -->
-    <include file="$(find offb)/launch/posix_sitl.launch">
+    <include file="$(find px4)/launch/posix_sitl.launch">
         <arg name="x" value="$(arg x)"/>
         <arg name="y" value="$(arg y)"/>
         <arg name="z" value="$(arg z)"/>
         <arg name="R" value="$(arg R)"/>
         <arg name="P" value="$(arg P)"/>
         <arg name="Y" value="$(arg Y)"/>
-        <arg name="world" value="$(arg world)"/>
+        <arg name="world" value=""/>
         <!-- $(arg world) -->
         <arg name="vehicle" value="$(arg vehicle)"/>
         <arg name="sdf" value="$(arg sdf)"/>

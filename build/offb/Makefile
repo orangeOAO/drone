@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+offb/CMakeFiles/TwistStamped.dir/rule:
+	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/TwistStamped.dir/rule
+.PHONY : offb/CMakeFiles/TwistStamped.dir/rule
+
+# Convenience name for target.
+TwistStamped: offb/CMakeFiles/TwistStamped.dir/rule
+
+.PHONY : TwistStamped
+
+# fast build rule for target.
+TwistStamped/fast:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/build
+.PHONY : TwistStamped/fast
+
+# Convenience name for target.
 offb/CMakeFiles/test_fly.dir/rule:
 	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/test_fly.dir/rule
 .PHONY : offb/CMakeFiles/test_fly.dir/rule
@@ -181,6 +196,33 @@ test_fly: offb/CMakeFiles/test_fly.dir/rule
 test_fly/fast:
 	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/build
 .PHONY : test_fly/fast
+
+src/TwistStamped.o: src/TwistStamped.cpp.o
+
+.PHONY : src/TwistStamped.o
+
+# target to build an object file
+src/TwistStamped.cpp.o:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.o
+.PHONY : src/TwistStamped.cpp.o
+
+src/TwistStamped.i: src/TwistStamped.cpp.i
+
+.PHONY : src/TwistStamped.i
+
+# target to preprocess a source file
+src/TwistStamped.cpp.i:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.i
+.PHONY : src/TwistStamped.cpp.i
+
+src/TwistStamped.s: src/TwistStamped.cpp.s
+
+.PHONY : src/TwistStamped.s
+
+# target to generate assembly for a file
+src/TwistStamped.cpp.s:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.s
+.PHONY : src/TwistStamped.cpp.s
 
 src/test_fly.o: src/test_fly.cpp.o
 
@@ -222,7 +264,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... TwistStamped"
 	@echo "... test_fly"
+	@echo "... src/TwistStamped.o"
+	@echo "... src/TwistStamped.i"
+	@echo "... src/TwistStamped.s"
 	@echo "... src/test_fly.o"
 	@echo "... src/test_fly.i"
 	@echo "... src/test_fly.s"

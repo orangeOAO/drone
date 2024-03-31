@@ -4,12 +4,8 @@
   <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/iris_obstacle.world"/> -->
 
   <!-- <node pkg="detect" type="cv_bridge_test" name="detect" required="true" output="screen" /> -->
-  <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch"></include>
+  <!-- <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch"></include> -->
   <node pkg="offb" type="test_fly" name="test_fly" required="true" output="screen" />
-
-  <param name="robot_settings/x" type="double" value="10.0" />
-  <param name="robot_settings/y" type="double" value="1.0" />
-  <param name="robot_settings/z" type="double" value="2.0" />
 
   <!-- <group ns="namespace2">
 		<node pkg="detect" type="cv_bridge_test" name="image_dept" required="true" output="screen"/>
