@@ -182,21 +182,6 @@ TwistStamped/fast:
 	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/build
 .PHONY : TwistStamped/fast
 
-# Convenience name for target.
-offb/CMakeFiles/test_fly.dir/rule:
-	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/test_fly.dir/rule
-.PHONY : offb/CMakeFiles/test_fly.dir/rule
-
-# Convenience name for target.
-test_fly: offb/CMakeFiles/test_fly.dir/rule
-
-.PHONY : test_fly
-
-# fast build rule for target.
-test_fly/fast:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/build
-.PHONY : test_fly/fast
-
 src/TwistStamped.o: src/TwistStamped.cpp.o
 
 .PHONY : src/TwistStamped.o
@@ -224,33 +209,6 @@ src/TwistStamped.cpp.s:
 	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.s
 .PHONY : src/TwistStamped.cpp.s
 
-src/test_fly.o: src/test_fly.cpp.o
-
-.PHONY : src/test_fly.o
-
-# target to build an object file
-src/test_fly.cpp.o:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/src/test_fly.cpp.o
-.PHONY : src/test_fly.cpp.o
-
-src/test_fly.i: src/test_fly.cpp.i
-
-.PHONY : src/test_fly.i
-
-# target to preprocess a source file
-src/test_fly.cpp.i:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/src/test_fly.cpp.i
-.PHONY : src/test_fly.cpp.i
-
-src/test_fly.s: src/test_fly.cpp.s
-
-.PHONY : src/test_fly.s
-
-# target to generate assembly for a file
-src/test_fly.cpp.s:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/src/test_fly.cpp.s
-.PHONY : src/test_fly.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -265,13 +223,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... TwistStamped"
-	@echo "... test_fly"
 	@echo "... src/TwistStamped.o"
 	@echo "... src/TwistStamped.i"
 	@echo "... src/TwistStamped.s"
-	@echo "... src/test_fly.o"
-	@echo "... src/test_fly.i"
-	@echo "... src/test_fly.s"
 .PHONY : help
 
 

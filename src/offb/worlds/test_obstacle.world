@@ -18,11 +18,7 @@
         <falloff>0</falloff>
       </spot>
     </light>
-
-    <include>
-      <uri>model://anya</uri>
-      <pose> 1 1 1 0 0 0</pose>
-    </include>
+    
     <!-- An actor -->
     <actor name="actor1">
         <pose>8 5 1.25 0 0 0</pose>
@@ -46,7 +42,6 @@
             </ignore_obstacles>
         </plugin>
     </actor>
-        
     
     <model name='ground_plane'>
       <static>1</static>
@@ -174,7 +169,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='unit_cylinder'>
-      <pose>-0.142379 -1.63073 0.5 0 -0 0</pose>
+      <pose>-0.142379 -5 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -229,7 +224,7 @@
       </link>
     </model>
     <model name='unit_cylinder_0'>
-      <pose>0.145072 1.55259 0.5 0 -0 0</pose>
+      <pose>0.145072 5 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -284,7 +279,7 @@
       </link>
     </model>
     <model name='unit_cylinder_1'>
-      <pose>3.64695 -0.519952 0.5 0 -0 0</pose>
+      <pose>3.64695 -5 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -364,7 +359,7 @@
         </link>
       </model>
       <model name='unit_cylinder'>
-        <pose>-0.142522 -1.63082 0.549991 -6e-06 -3.2e-05 4.4e-05</pose>
+        <pose>-0.142522 -5 0.549991 -6e-06 -3.2e-05 4.4e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>-0.142522 -1.63082 0.549991 -6e-06 -3.2e-05 4.4e-05</pose>
@@ -374,7 +369,7 @@
         </link>
       </model>
       <model name='unit_cylinder_0'>
-        <pose>0.144989 1.55242 0.549967 7e-06 6.6e-05 1.4e-05</pose>
+        <pose>0.144989 5 0.549967 7e-06 6.6e-05 1.4e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>0.144989 1.55242 0.549967 7e-06 6.6e-05 1.4e-05</pose>
@@ -384,7 +379,7 @@
         </link>
       </model>
       <model name='unit_cylinder_1'>
-        <pose>3.64684 -0.520026 0.550007 -3e-06 -1.4e-05 -5.3e-05</pose>
+        <pose>3.64684 5 0.550007 -3e-06 -1.4e-05 -5.3e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>3.64684 -0.520026 0.550007 -3e-06 -1.4e-05 -5.3e-05</pose>

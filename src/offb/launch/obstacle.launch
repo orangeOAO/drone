@@ -13,6 +13,5 @@
         <arg name="debug" value="$(arg debug)"/>
         <arg name="verbose" value="$(arg verbose)"/>
         <arg name="paused" value="$(arg paused)"/>
-        <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
     </include>
 </launch>

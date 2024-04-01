@@ -26,6 +26,8 @@ public:
   image_transport::ImageTransport it_;
   image_transport::Subscriber im_sub_;
   image_transport::Publisher im_pub_;
+  
+  ros::Publisher pedestrian_data;
 
   ros::Publisher pedestrians_pub_;
 
@@ -50,6 +52,7 @@ public:
 
     // Publish detected faces and pedestrians.
     pedestrians_pub_ = nh_.advertise<hog_haar_person_detection::Pedestrians>("/person_detection/pedestrians", 1000);
+    pedestrian_data= nh_.advertise<hog_haar_person_detection::BoundingBox>("/person_detection/pedestrian/data", 1000);
 
     cv::namedWindow(OPENCV_WINDOW);
   }
@@ -89,7 +92,7 @@ public:
     // Draw detections from HOG to the screen.
     hog_haar_person_detection::Pedestrians pedestrians_msg; //用于发布pedestrians结果
     // ROS_INFO("%ld",detected_pedestrian.size());
-    for (unsigned i = 0; i < detected_pedestrian.size(); i++)
+    for (unsigned i = 0; i < std::min(static_cast<int>(detected_pedestrian.size()),1); i++)
     {
       // Draw on screen.
       cv::rectangle(im_bgr, detected_pedestrian[i], cv::Scalar(255)); //画出人脸框
@@ -102,8 +105,10 @@ public:
       pedestrian.width = detected_pedestrian[i].width;
       pedestrian.height = detected_pedestrian[i].height;
       pedestrians_msg.pedestrians.push_back(pedestrian); //将bounding box加入pedestrians_msg中
+      pedestrian_data.publish(pedestrian);
     }
     pedestrians_pub_.publish(pedestrians_msg);
+    
 
     // Publish image to screen.
 

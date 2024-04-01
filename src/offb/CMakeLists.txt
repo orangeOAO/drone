@@ -113,10 +113,10 @@ catkin_package(
 ###########
 ## Build ##
 ###########
-add_executable(test_fly src/test_fly.cpp)
+# add_executable(test_fly src/test_fly.cpp)
 add_executable(TwistStamped src/TwistStamped.cpp)
 target_link_libraries(TwistStamped ${catkin_LIBRARIES})
-target_link_libraries(test_fly ${catkin_LIBRARIES})
+# target_link_libraries(test_fly ${catkin_LIBRARIES})
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(

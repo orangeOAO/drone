@@ -218,7 +218,6 @@ hog_haar_person_detection/clean: hog_haar_person_detection/CMakeFiles/hog_haar_p
 
 # Recursive "all" directory target.
 offb/all: offb/CMakeFiles/TwistStamped.dir/all
-offb/all: offb/CMakeFiles/test_fly.dir/all
 
 .PHONY : offb/all
 
@@ -229,7 +228,6 @@ offb/preinstall:
 
 # Recursive "clean" directory target.
 offb/clean: offb/CMakeFiles/TwistStamped.dir/clean
-offb/clean: offb/CMakeFiles/test_fly.dir/clean
 
 .PHONY : offb/clean
 
@@ -1607,33 +1605,6 @@ TwistStamped: offb/CMakeFiles/TwistStamped.dir/rule
 offb/CMakeFiles/TwistStamped.dir/clean:
 	$(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/clean
 .PHONY : offb/CMakeFiles/TwistStamped.dir/clean
-
-#=============================================================================
-# Target rules for target offb/CMakeFiles/test_fly.dir
-
-# All Build rule for target.
-offb/CMakeFiles/test_fly.dir/all:
-	$(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/depend
-	$(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/orange/orange_ws/build/CMakeFiles --progress-num=30,31 "Built target test_fly"
-.PHONY : offb/CMakeFiles/test_fly.dir/all
-
-# Build rule for subdir invocation for target.
-offb/CMakeFiles/test_fly.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/orange/orange_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/test_fly.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/orange/orange_ws/build/CMakeFiles 0
-.PHONY : offb/CMakeFiles/test_fly.dir/rule
-
-# Convenience name for target.
-test_fly: offb/CMakeFiles/test_fly.dir/rule
-
-.PHONY : test_fly
-
-# clean rule for target.
-offb/CMakeFiles/test_fly.dir/clean:
-	$(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/clean
-.PHONY : offb/CMakeFiles/test_fly.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

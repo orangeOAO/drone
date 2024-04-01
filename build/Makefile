@@ -817,19 +817,6 @@ TwistStamped/fast:
 	$(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/build
 .PHONY : TwistStamped/fast
 
-#=============================================================================
-# Target rules for targets named test_fly
-
-# Build rule for target.
-test_fly: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_fly
-.PHONY : test_fly
-
-# fast build rule for target.
-test_fly/fast:
-	$(MAKE) -f offb/CMakeFiles/test_fly.dir/build.make offb/CMakeFiles/test_fly.dir/build
-.PHONY : test_fly/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -893,7 +880,6 @@ help:
 	@echo "... hog_haar_person_detection_generate_messages_cpp"
 	@echo "... hog_haar_person_detection_generate_messages_py"
 	@echo "... TwistStamped"
-	@echo "... test_fly"
 .PHONY : help
 
 

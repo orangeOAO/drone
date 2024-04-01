@@ -21,7 +21,7 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "offb_node");
+    ros::init(argc, argv, "test_node");
     ros::NodeHandle nh;
 
     // 状态、位置发布和服务客户端设置
@@ -79,14 +79,14 @@ int main(int argc, char **argv)
     while(ros::ok()){
         if(flag)
         {
-            ROS_INFO("ok\n , mode=%s");
+            ROS_INFO("ok\n , mode=%s", offb_set_mode);
             flag = false;
         }
         // nh.getParam("robot_settings/x",robot_setting.x);
         // nh.getParam("robot_settings/y", robot_setting.y);
         // nh.getParam("robot_settings/z",robot_setting.z );
-        pose.pose.position.x = 1;
-        pose.pose.position.y = 1;
+        pose.pose.position.x = -1;
+        pose.pose.position.y = 0;
         pose.pose.position.z = 1;
 
         //ROS_INFO("x=%.f, y=%.f, z=%.f\n",robot_setting.x, robot_setting.y, robot_setting.z);
