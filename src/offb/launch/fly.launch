@@ -5,7 +5,7 @@
 
   <!-- <node pkg="detect" type="cv_bridge_test" name="detect" required="true" output="screen" /> -->
   <!-- <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch"></include> -->
-  <node pkg="offb" type="test_fly" name="test_fly" required="true" output="screen" />
+  <node pkg="offb" type="mainFunc" name="test_fly" required="true" output="screen" />
 
   <!-- <group ns="namespace2">
 		<node pkg="detect" type="cv_bridge_test" name="image_dept" required="true" output="screen"/>
