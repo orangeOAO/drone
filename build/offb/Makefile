@@ -168,46 +168,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-offb/CMakeFiles/TwistStamped.dir/rule:
-	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/TwistStamped.dir/rule
-.PHONY : offb/CMakeFiles/TwistStamped.dir/rule
+offb/CMakeFiles/mainFunc.dir/rule:
+	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/mainFunc.dir/rule
+.PHONY : offb/CMakeFiles/mainFunc.dir/rule
 
 # Convenience name for target.
-TwistStamped: offb/CMakeFiles/TwistStamped.dir/rule
+mainFunc: offb/CMakeFiles/mainFunc.dir/rule
 
-.PHONY : TwistStamped
+.PHONY : mainFunc
 
 # fast build rule for target.
-TwistStamped/fast:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/build
-.PHONY : TwistStamped/fast
+mainFunc/fast:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/build
+.PHONY : mainFunc/fast
 
-src/TwistStamped.o: src/TwistStamped.cpp.o
+src/mainFunc.o: src/mainFunc.cpp.o
 
-.PHONY : src/TwistStamped.o
+.PHONY : src/mainFunc.o
 
 # target to build an object file
-src/TwistStamped.cpp.o:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.o
-.PHONY : src/TwistStamped.cpp.o
+src/mainFunc.cpp.o:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.o
+.PHONY : src/mainFunc.cpp.o
 
-src/TwistStamped.i: src/TwistStamped.cpp.i
+src/mainFunc.i: src/mainFunc.cpp.i
 
-.PHONY : src/TwistStamped.i
+.PHONY : src/mainFunc.i
 
 # target to preprocess a source file
-src/TwistStamped.cpp.i:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.i
-.PHONY : src/TwistStamped.cpp.i
+src/mainFunc.cpp.i:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.i
+.PHONY : src/mainFunc.cpp.i
 
-src/TwistStamped.s: src/TwistStamped.cpp.s
+src/mainFunc.s: src/mainFunc.cpp.s
 
-.PHONY : src/TwistStamped.s
+.PHONY : src/mainFunc.s
 
 # target to generate assembly for a file
-src/TwistStamped.cpp.s:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/src/TwistStamped.cpp.s
-.PHONY : src/TwistStamped.cpp.s
+src/mainFunc.cpp.s:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.s
+.PHONY : src/mainFunc.cpp.s
 
 # Help Target
 help:
@@ -222,10 +222,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... TwistStamped"
-	@echo "... src/TwistStamped.o"
-	@echo "... src/TwistStamped.i"
-	@echo "... src/TwistStamped.s"
+	@echo "... mainFunc"
+	@echo "... src/mainFunc.o"
+	@echo "... src/mainFunc.i"
+	@echo "... src/mainFunc.s"
 .PHONY : help
 
 

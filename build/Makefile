@@ -805,17 +805,17 @@ hog_haar_person_detection_generate_messages_py/fast:
 .PHONY : hog_haar_person_detection_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named TwistStamped
+# Target rules for targets named mainFunc
 
 # Build rule for target.
-TwistStamped: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 TwistStamped
-.PHONY : TwistStamped
+mainFunc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mainFunc
+.PHONY : mainFunc
 
 # fast build rule for target.
-TwistStamped/fast:
-	$(MAKE) -f offb/CMakeFiles/TwistStamped.dir/build.make offb/CMakeFiles/TwistStamped.dir/build
-.PHONY : TwistStamped/fast
+mainFunc/fast:
+	$(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/build
+.PHONY : mainFunc/fast
 
 # Help Target
 help:
@@ -879,7 +879,7 @@ help:
 	@echo "... _hog_haar_person_detection_generate_messages_check_deps_Faces"
 	@echo "... hog_haar_person_detection_generate_messages_cpp"
 	@echo "... hog_haar_person_detection_generate_messages_py"
-	@echo "... TwistStamped"
+	@echo "... mainFunc"
 .PHONY : help
 
 

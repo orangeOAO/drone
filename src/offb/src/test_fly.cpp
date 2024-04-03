@@ -77,11 +77,11 @@ int main(int argc, char **argv)
     ROS_INFO("OAO\n");
     bool flag = true;
     while(ros::ok()){
-        if(flag)
-        {
-            ROS_INFO("ok\n , mode=%s", offb_set_mode);
-            flag = false;
-        }
+        // if(flag)
+        // {
+        //     ROS_INFO("ok\n , mode=%s", offb_set_mode);
+        //     flag = false;
+        // }
         // nh.getParam("robot_settings/x",robot_setting.x);
         // nh.getParam("robot_settings/y", robot_setting.y);
         // nh.getParam("robot_settings/z",robot_setting.z );
