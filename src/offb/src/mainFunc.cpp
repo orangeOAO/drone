@@ -7,7 +7,11 @@
 
 class DroneAction {
 public:
-    DroneAction() : rate(2.0) { // 初始化频率为10Hz
+    mavros_msgs::State current_state;
+    ros::ServiceClient arming_client;
+    ros::ServiceClient set_mode_client;
+    DroneAction()
+    { // 初始化频率为10Hz
         // Advertise and Subscribe初始化
         local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>("mavros/setpoint_position/local", 10);
         local_pos_sub = nh.subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose",10, &DroneAction::location_cb, this);
@@ -18,63 +22,47 @@ public:
         // 客户端初始化
         arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
         set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
-        takeoff_cl = nh.serviceClient<mavros_msgs::CommandTOL>("/mavros/cmd/takeoff");
 
-        // 等待无人机连接
-        ROS_INFO("Waiting for UAV connection...");
-        while(ros::ok() && !current_state.connected){
-            ros::spinOnce();
-            rate.sleep();
-        }
-        ROS_INFO("UAV connected.");
+        
     }
 
     void takeOff(float altitude) {
         
         if(!current_state.armed) {
-            if(arm()) {
-                ROS_INFO("UAV Armed.");
-            }
+            // while(!arm()) {
+            //     ROS_INFO("UAV not Armed.");  
+            // }
+            arm();
         }
         if(current_state.mode != "OFFBOARD" && setMode("OFFBOARD")) {
             ROS_INFO("Offboard enabled");
         }
+        
 
-        if(!takeoff_attempted) 
+        if(!takeoff_attempted && current_state.armed) 
         {
+            ROS_INFO("UVA takeOff");
             geometry_msgs::PoseStamped _newPose;
-            _newPose.pose.position.x = 0;
-            _newPose.pose.position.y = 0;
+            _newPose.pose.position.x = current_location.pose.position.x;
+            _newPose.pose.position.y = current_location.pose.position.y;
             _newPose.pose.position.z = altitude + current_location.pose.position.z;
             local_pos_pub.publish(_newPose);
             takeoff_attempted = true;
         }
-    }
-
-    void spin() {
-        while(ros::ok()) {
-            if(!takeoff_attempted) {
-                takeOff(5.0); // 假设起飞高度为5米
-                ROS_INFO("TAKE OFF");
-            }
-            ros::spinOnce();
-            rate.sleep();
+        else{
+            ROS_WARN("Fail to takeOff");
         }
     }
 
 private:
     ros::NodeHandle nh;
-    ros::Rate rate;
+    // ros::Rate rate;
 
     ros::Publisher local_pos_pub;
     ros::Subscriber local_pos_sub;
     ros::Subscriber state_sub;
 
-    ros::ServiceClient arming_client;
-    ros::ServiceClient set_mode_client;
-    ros::ServiceClient takeoff_cl;
 
-    mavros_msgs::State current_state;
     geometry_msgs::PoseStamped current_location;
     bool takeoff_attempted;
 
@@ -107,7 +95,21 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "drone_action_node");
     DroneAction droneAction;
 
-    droneAction.spin(); // 主循环
+    ros::Rate rate(2.0);
+    // 等待无人机连接
+    ROS_INFO("Waiting for UAV connection...");
+    while(ros::ok()){
+        ros::spinOnce();
+        rate.sleep();
+    }
+    
+    while(ros::ok())
+    {
+        droneAction.takeOff(3);
+        ros::spinOnce();
+        rate.sleep();
+    }
+    
 
     return 0;
 }
