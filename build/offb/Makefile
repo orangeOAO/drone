@@ -168,46 +168,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-offb/CMakeFiles/mainFunc.dir/rule:
-	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/mainFunc.dir/rule
-.PHONY : offb/CMakeFiles/mainFunc.dir/rule
+offb/CMakeFiles/action.dir/rule:
+	cd /home/orange/orange_ws/build && $(MAKE) -f CMakeFiles/Makefile2 offb/CMakeFiles/action.dir/rule
+.PHONY : offb/CMakeFiles/action.dir/rule
 
 # Convenience name for target.
-mainFunc: offb/CMakeFiles/mainFunc.dir/rule
+action: offb/CMakeFiles/action.dir/rule
 
-.PHONY : mainFunc
+.PHONY : action
 
 # fast build rule for target.
-mainFunc/fast:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/build
-.PHONY : mainFunc/fast
+action/fast:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/action.dir/build.make offb/CMakeFiles/action.dir/build
+.PHONY : action/fast
 
-src/mainFunc.o: src/mainFunc.cpp.o
+src/action.o: src/action.cpp.o
 
-.PHONY : src/mainFunc.o
+.PHONY : src/action.o
 
 # target to build an object file
-src/mainFunc.cpp.o:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.o
-.PHONY : src/mainFunc.cpp.o
+src/action.cpp.o:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/action.dir/build.make offb/CMakeFiles/action.dir/src/action.cpp.o
+.PHONY : src/action.cpp.o
 
-src/mainFunc.i: src/mainFunc.cpp.i
+src/action.i: src/action.cpp.i
 
-.PHONY : src/mainFunc.i
+.PHONY : src/action.i
 
 # target to preprocess a source file
-src/mainFunc.cpp.i:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.i
-.PHONY : src/mainFunc.cpp.i
+src/action.cpp.i:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/action.dir/build.make offb/CMakeFiles/action.dir/src/action.cpp.i
+.PHONY : src/action.cpp.i
 
-src/mainFunc.s: src/mainFunc.cpp.s
+src/action.s: src/action.cpp.s
 
-.PHONY : src/mainFunc.s
+.PHONY : src/action.s
 
 # target to generate assembly for a file
-src/mainFunc.cpp.s:
-	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/src/mainFunc.cpp.s
-.PHONY : src/mainFunc.cpp.s
+src/action.cpp.s:
+	cd /home/orange/orange_ws/build && $(MAKE) -f offb/CMakeFiles/action.dir/build.make offb/CMakeFiles/action.dir/src/action.cpp.s
+.PHONY : src/action.cpp.s
 
 # Help Target
 help:
@@ -222,10 +222,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... mainFunc"
-	@echo "... src/mainFunc.o"
-	@echo "... src/mainFunc.i"
-	@echo "... src/mainFunc.s"
+	@echo "... action"
+	@echo "... src/action.o"
+	@echo "... src/action.i"
+	@echo "... src/action.s"
 .PHONY : help
 
 

@@ -115,8 +115,11 @@ catkin_package(
 ###########
 # add_executable(test_fly src/test_fly.cpp)
 
-add_executable(mainFunc src/mainFunc.cpp)
-target_link_libraries(mainFunc ${catkin_LIBRARIES})
+
+add_executable(action src/action.cpp)
+target_link_libraries(action ${catkin_LIBRARIES})
+
+
 # target_link_libraries(test_fly ${catkin_LIBRARIES})
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations

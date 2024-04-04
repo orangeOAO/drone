@@ -85,6 +85,7 @@ int main(int argc, char **argv)
         // nh.getParam("robot_settings/x",robot_setting.x);
         // nh.getParam("robot_settings/y", robot_setting.y);
         // nh.getParam("robot_settings/z",robot_setting.z );
+
         pose.pose.position.x = -1;
         pose.pose.position.y = 0;
         pose.pose.position.z = 1;
@@ -110,7 +111,7 @@ int main(int argc, char **argv)
                 last_request = ros::Time::now();
             }
         }
-
+        
         // 更新位置
         local_pos_pub.publish(pose);
         ros::spinOnce();

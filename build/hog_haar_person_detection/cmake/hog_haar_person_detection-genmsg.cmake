@@ -19,12 +19,12 @@ add_custom_target(hog_haar_person_detection_generate_messages ALL)
 
 get_filename_component(_filename "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg" NAME_WE)
 add_custom_target(_hog_haar_person_detection_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hog_haar_person_detection" "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg" "std_msgs/Header:geometry_msgs/Point:hog_haar_person_detection/BoundingBox"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hog_haar_person_detection" "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg" "hog_haar_person_detection/BoundingBox:geometry_msgs/Point:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg" NAME_WE)
 add_custom_target(_hog_haar_person_detection_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hog_haar_person_detection" "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg" "std_msgs/Header:geometry_msgs/Point:hog_haar_person_detection/BoundingBox"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hog_haar_person_detection" "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg" "hog_haar_person_detection/BoundingBox:geometry_msgs/Point:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg" NAME_WE)
@@ -41,13 +41,13 @@ add_custom_target(_hog_haar_person_detection_generate_messages_check_deps_${_fil
 _generate_msg_cpp(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_cpp(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_cpp(hog_haar_person_detection
@@ -90,13 +90,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS hog_haar_person_detection_generate_
 _generate_msg_eus(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_eus(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_eus(hog_haar_person_detection
@@ -139,13 +139,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS hog_haar_person_detection_generate_
 _generate_msg_lisp(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_lisp(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_lisp(hog_haar_person_detection
@@ -188,13 +188,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS hog_haar_person_detection_generate_
 _generate_msg_nodejs(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_nodejs(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_nodejs(hog_haar_person_detection
@@ -237,13 +237,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS hog_haar_person_detection_generate_
 _generate_msg_py(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Faces.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_py(hog_haar_person_detection
   "/home/orange/orange_ws/src/hog_haar_person_detection/msg/Pedestrians.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg"
+  "/home/orange/orange_ws/src/hog_haar_person_detection/msg/BoundingBox.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hog_haar_person_detection
 )
 _generate_msg_py(hog_haar_person_detection

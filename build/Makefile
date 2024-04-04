@@ -805,17 +805,17 @@ hog_haar_person_detection_generate_messages_py/fast:
 .PHONY : hog_haar_person_detection_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named mainFunc
+# Target rules for targets named action
 
 # Build rule for target.
-mainFunc: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mainFunc
-.PHONY : mainFunc
+action: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 action
+.PHONY : action
 
 # fast build rule for target.
-mainFunc/fast:
-	$(MAKE) -f offb/CMakeFiles/mainFunc.dir/build.make offb/CMakeFiles/mainFunc.dir/build
-.PHONY : mainFunc/fast
+action/fast:
+	$(MAKE) -f offb/CMakeFiles/action.dir/build.make offb/CMakeFiles/action.dir/build
+.PHONY : action/fast
 
 # Help Target
 help:
@@ -879,7 +879,7 @@ help:
 	@echo "... _hog_haar_person_detection_generate_messages_check_deps_Faces"
 	@echo "... hog_haar_person_detection_generate_messages_cpp"
 	@echo "... hog_haar_person_detection_generate_messages_py"
-	@echo "... mainFunc"
+	@echo "... action"
 .PHONY : help
 
 
