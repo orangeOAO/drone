@@ -42,7 +42,7 @@
             </ignore_obstacles>
         </plugin>
     </actor> -->
-    <actor name="pedestrian">
+    <!-- <actor name="pedestrian">
         <skin>
             <filename>walk.dae</filename>
         </skin>
@@ -67,6 +67,24 @@
             <animation name="walking">
                 <filename>model://pedestrian_walking.dae</filename>
             </animation>
+        </script>
+    </actor> -->
+    <actor name="pedestrian">
+    <pose>6 3 1 0 0 1.57</pose>
+        <skin>
+            <filename>stand_up.dae</filename>
+        </skin>
+        <script>
+            <loop>true</loop>
+            <delay_start>0.000000</delay_start>
+            <auto_start>true</auto_start>
+            <trajectory id="0" type="walk">
+                <waypoint>
+                    <time>0</time>
+                    <pose>6 3 0.2 0 0 1.57</pose>
+                </waypoint>
+                
+            </trajectory>
         </script>
     </actor>
 
