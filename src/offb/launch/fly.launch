@@ -6,11 +6,11 @@
   <!-- <node pkg="detect" type="cv_bridge_test" name="detect" required="true" output="screen" /> -->
   <!-- <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch"></include> -->
   <node pkg="offb" type="mainFunc" name="mainFunc" required="true" output="screen" />
-
-  <!-- <group ns="namespace2">
+  <>
+    <!-- <group ns="namespace2">
 		<node pkg="detect" type="cv_bridge_test" name="image_dept" required="true" output="screen"/>
 	</group> -->
 
 
 
-</launch>
+  </launch>

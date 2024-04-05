@@ -3,6 +3,8 @@
 	<!-- Include the MAVROS node with SITL and Gazebo -->
 	<!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/iris_obstacle.world"/> -->
 	<include file="$(find offb)/launch/mavros_posix_sitl.launch"></include>
+	<!-- <arg name="x" default="action"/>
+	<node pkg = "offb" type="$(arg x)" name="$(arg x)" required ="true" output="screen"/> -->
 	<!-- <group ns="namespace2">
 		<node pkg="detect" type="cv_bridge_test" name="image_dept" required="true" output="screen"/>
 	</group> -->
