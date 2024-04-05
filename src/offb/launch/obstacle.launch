@@ -1,5 +1,5 @@
 <launch>
-    <arg name="world" default="$(find offb)/worlds/test_obstacle.world"/>
+    <arg name="world" default="$(find offb)/worlds/pedestrain.world"/>
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
     <arg name="debug" default="false"/>
