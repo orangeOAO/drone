@@ -83,7 +83,7 @@ class ActionTest
             _pose.pose.position.y = _pose.pose.position.y;
             _pose.pose.position.z = altitude;
             local_pos_pub.publish(_pose);
-            ROS_INFO("%f",altitude);
+            // ROS_INFO("%f",altitude);
         }
 
     private:
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         nh.getParam("height", param);
-y
+
         _actionTest.serviceCall();
         
         _actionTest.test(param);
