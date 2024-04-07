@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   hog_haar_person_detection
   geometry_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -118,6 +119,8 @@ catkin_package(
 
 add_executable(action src/action.cpp)
 target_link_libraries(action ${catkin_LIBRARIES})
+add_executable(takeoff_test src/takeoff_test.cpp)
+target_link_libraries(takeoff_test ${catkin_LIBRARIES})
 
 
 # target_link_libraries(test_fly ${catkin_LIBRARIES})
