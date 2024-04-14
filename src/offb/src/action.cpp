@@ -46,6 +46,14 @@ class ActionUAV
 
             last_request = ros::Time::now();
 
+            ros::Rate rate(20.0);
+
+            // wait for FCU connection
+            while(ros::ok() && _current_state.connected){
+                ros::spinOnce();
+                rate.sleep();
+                ROS_INFO("connecting to FCT...");
+            }
             
 
 
@@ -97,11 +105,20 @@ class ActionUAV
                 _pose.pose.position.z = _pose.pose.position.z + altitude;
                 
                 _attempedTakeoff = true;
+                
             }
-            local_pos_pub.publish(_pose);
+            if(_controlState == "POSITION")
+            {
+                local_pos_pub.publish(_pose);
+            }
+                
 
         }
-
+        void setControlState(std::string state)
+        {
+            ROS_INFO("%s\n",state.c_str());
+            _controlState = state;
+        }
         bool waitToUnlock()
         {
             return _current_state.armed && _current_state.mode == "OFFBOARD";
@@ -135,7 +152,11 @@ class ActionUAV
             }
         }
 
-
+        void decideToOpenTrack(bool TF)
+        {
+            _attempedTrack = TF;
+            _controlState = "TRACK";
+        }
         void test()
         {
 
@@ -167,8 +188,9 @@ class ActionUAV
         ros::Time last_request;
         geometry_msgs::PoseStamped _pose;
         geometry_msgs::Twist _velMsg;
+        ros::Time _catchClock;
 
-
+        std::string _controlState;
         bool _attempedTakeoff;
         bool _attempLand;
         bool _attempedTrack;
@@ -182,7 +204,6 @@ class ActionUAV
         void pedestrain_cb(const hog_haar_person_detection::BoundingBox::ConstPtr &msg)
         {
             _pedestrainData = *msg;
-            _attempedTrack = true;
             track();
             // ROS_INFO("x=%f, y=%f",_pedestrainData.center.x, _pedestrainData.center.y);
         }
@@ -190,43 +211,32 @@ class ActionUAV
         void track()
         {
             const double PID_P = 0.2;
-            if(_attempedTrack){
+            if(_attempedTrack && ros::Time::now() - _catchClock>ros::Duration(0.5)){
                 // geometry_msgs::PointStamped boxCoordinate, targetCoordinate;
                 // boxCoordinate.point.x = 0;
                 double dx = _cameraInfo.width/2 - _pedestrainData.center.x;
-                // int dy = _cameraInfo.height/2 - _pedestrainData.center.y;
-                // _velMsg.linear.x = MAX_SPEED / dx * -20;
-                // boxCoordinate.header.frame_id = "camera_link";
-                
-                // listener.transformPoint("iris::base_link", boxCoordinate, targetCoordinate);
-                ROS_INFO("dx=%f p=%f", dx, _velMsg.linear.y);
-                
+                                
                 if(abs(_cameraInfo.width/2 - _pedestrainData.center.x)<=50)
                 {
                     _velMsg.linear.y = 0;
                     _velMsg.linear.x = 0;
                     _velMsg.linear.z = 0;
+                    ROS_INFO("goodgoodgood");
                 }
                 else
                 {
                     _velMsg.linear.y = PID_P * dx * 0.05;
+                    ROS_INFO("dx=%f p=%f", dx, _velMsg.linear.y);
                 }
-                
-                // geometry_msgs::PoseStamped targetPose;
-                // targetPose.header.stamp = ros::Time::now();
-                // targetPose.header.frame_id = "base_link";  // 使用 base_link 坐标系
-                // targetPose.pose.position.x = targetCoordinate.point.x;
-                // targetPose.pose.position.y = targetCoordinate.point.y;
-                // targetPose.pose.position.z = targetCoordinate.point.z;
-                // local_pos_pub.publish(targetPose);
-                // ROS_INFO("Position -> x: %f, y: %f, z: %f", 
-                //             targetPose.pose.position.x, 
-                //             targetPose.pose.position.y, 
-                //             targetPose.pose.position.z);
+                _catchClock = ros::Time::now();
 
 
             }
-            // vel_pub.publish(_velMsg);
+            if(_controlState == "TRACK")
+            {
+                vel_pub.publish(_velMsg);
+            }
+            
         }
 
  
@@ -238,19 +248,45 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "arm_node");
     ros::NodeHandle nh;
     int param;
-    ros::Rate _rate(2.0);
+    ros::Rate _rate(20.0);
     ActionUAV _ActionUAV(nh);
     ros::Time _landTimeTest = ros::Time::now();
     ROS_INFO("START!");
-
-    while(ros::ok())
+    int x =0 ;
+    while(ros::ok() && x<60*10)
     {
         _ActionUAV.serviceCall();
+        
+        _ActionUAV.setControlState("POSITION");
         _ActionUAV.takeOff(2.5);
+        
         ros::spinOnce();
         _rate.sleep();
+        x++;
     }
-    
+    x=0;
+    while(ros::ok() && x<50*10)
+    {
+        _ActionUAV.serviceCall();
+        _ActionUAV.setControlState("TRACK");
+        _ActionUAV.decideToOpenTrack(true);
+        
+
+        ros::spinOnce();
+        _rate.sleep();
+        x++;
+    }
+    x=0;
+    while(ros::ok() && x<50*10)
+    {
+
+        _ActionUAV.serviceCall();
+        _ActionUAV.setControlState("LAND");
+        _ActionUAV.land();
+        ros::spinOnce();
+        _rate.sleep();
+        x++;
+    }
 
     // for(int i = 0; ros::ok() && i < 10*5; ++i){
     //     _ActionUAV.serviceCall("LAND");
