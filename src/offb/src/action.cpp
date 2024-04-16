@@ -37,10 +37,9 @@ class ActionUAV
 
             set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
             land_client = nh.serviceClient<mavros_msgs::CommandTOL>("/mavros/cmd/land");
-
+            _pos_sub = nh.subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose", 10, &ActionUAV::positionCallback, this);
             local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>("mavros/setpoint_position/local", 10);
             vel_pub = nh.advertise<geometry_msgs::Twist>("/mavros/setpoint_velocity/cmd_vel_unstamped",10);
-            _pedestrain_sub = nh.subscribe<hog_haar_person_detection::BoundingBox>("/person_detection/pedestrian/data", 1000, &ActionUAV::pedestrain_cb, this);
 
             // offb_set_mode.request.custom_mode ="OFFBOARD";
 
@@ -84,7 +83,7 @@ class ActionUAV
             
         }
 
-        void setPoint(double x, double y, double z)
+        bool setPoint(double x, double y, double z)
         {
             _pose.header.frame_id = "Set Point";
             _pose.header.stamp = ros::Time();
@@ -92,9 +91,25 @@ class ActionUAV
             _pose.pose.position.y = y ;
             _pose.pose.position.z = z ;
             local_pos_pub.publish(_pose);
+
+            ros::Rate rate(10); // Check 10 times per second
+            _positionReached = false; // Reset the flag
+
+            // Wait for position to be reached or timeout after 5 seconds
+            for(int i = 0; i < 10; i++) {
+                ros::spinOnce();
+                if(_positionReached) {
+                    return true;
+                }
+                rate.sleep();
+            }
+            return false; // Timeout reached
+
         }
 
-        void takeOff(double altitude)
+        
+
+        bool takeOff(double altitude)
         {
 
             if(!_attempedTakeoff){
@@ -107,10 +122,20 @@ class ActionUAV
                 _attempedTakeoff = true;
                 
             }
-            if(_controlState == "POSITION")
-            {
-                local_pos_pub.publish(_pose);
+            local_pos_pub.publish(_pose);
+            ros::Rate rate(10); // Check 10 times per second
+            _positionReached = false; // Reset the flag
+
+            // Wait for position to be reached or timeout after 5 seconds
+            for(int i = 0; i < 10; i++) {
+                ros::spinOnce();
+                if(_positionReached) {
+                    return true;
+                }
+                rate.sleep();
             }
+            return false; // Timeout reached
+
                 
 
         }
@@ -126,41 +151,36 @@ class ActionUAV
 
         void land()
         {
-            if(!_attempLand){
-                ros::service::waitForService("/mavros/cmd/land");
-                _attempLand = true;
-                _landSrv.request.altitude = 0.0; // 设置起飞后的目标高度为5米
-                _landSrv.request.latitude = 0;// 使用当前位置
-                _landSrv.request.longitude = 0;  // 使用当前位置
-                _landSrv.request.min_pitch = 0;  // 最小俯仰角，0表示忽略
-                _landSrv.request.yaw = 0;        // 目标偏航角，0表示忽略
+            ros::service::waitForService("/mavros/cmd/land");
+            _attempLand = true;
+            _landSrv.request.altitude = 0.0; // 设置起飞后的目标高度为5米
+            _landSrv.request.latitude = 0;// 使用当前位置
+            _landSrv.request.longitude = 0;  // 使用当前位置
+            _landSrv.request.min_pitch = 0;  // 最小俯仰角，0表示忽略
+            _landSrv.request.yaw = 0;        // 目标偏航角，0表示忽略
 
-                if (land_client.call(_landSrv)) { // 调用服务
-                    if (_landSrv.response.success) 
-                    {
-                        ROS_INFO("LANDING....");
-                    } 
-                    else 
-                    {
-                        ROS_ERROR("LAND failed");
-                    }
+            if (land_client.call(_landSrv)) { // 调用服务
+                if (_landSrv.response.success) 
+                {
+                    ROS_INFO("LANDING....");
                 } 
                 else 
                 {
-                    ROS_ERROR("Failed to call service /mavros/cmd/land");
+                    ROS_ERROR("LAND failed");
                 }
+            } 
+            else 
+            {
+                ROS_ERROR("Failed to call service /mavros/cmd/land");
             }
+            
         }
 
         void decideToOpenTrack(bool TF)
         {
             _attempedTrack = TF;
-            _controlState = "TRACK";
-        }
-        void test()
-        {
+            _pedestrain_sub = nh.subscribe<hog_haar_person_detection::BoundingBox>("/person_detection/pedestrian/data", 1000, &ActionUAV::pedestrain_cb, this);
 
-            
         }
 
     private:
@@ -175,6 +195,7 @@ class ActionUAV
         ros::Subscriber state_sub;
         ros::Subscriber _pedestrain_sub;
         ros::Subscriber _cameraInfoSub;
+        ros::Subscriber _pos_sub;
         ros::Publisher local_pos_pub;
         ros::Publisher vel_pub;
 
@@ -188,12 +209,14 @@ class ActionUAV
         ros::Time last_request;
         geometry_msgs::PoseStamped _pose;
         geometry_msgs::Twist _velMsg;
+        geometry_msgs::PoseStamped _currentPose;
         ros::Time _catchClock;
 
         std::string _controlState;
         bool _attempedTakeoff;
         bool _attempLand;
         bool _attempedTrack;
+        bool _positionReached;
 
 
         void state_cb(const mavros_msgs::State::ConstPtr& msg)
@@ -210,33 +233,41 @@ class ActionUAV
 
         void track()
         {
-            const double PID_P = 0.2;
-            if(_attempedTrack && ros::Time::now() - _catchClock>ros::Duration(0.5)){
-                // geometry_msgs::PointStamped boxCoordinate, targetCoordinate;
-                // boxCoordinate.point.x = 0;
-                double dx = _cameraInfo.width/2 - _pedestrainData.center.x;
+            const double PID_P = 0.1;
+            // if(_attempedTrack && ros::Time::now() - _catchClock>ros::Duration(1)){
+            //     // geometry_msgs::PointStamped boxCoordinate, targetCoordinate;
+            //     // boxCoordinate.point.x = 0;
+            //     double dx = _cameraInfo.width/2 - _pedestrainData.center.x;
                                 
-                if(abs(_cameraInfo.width/2 - _pedestrainData.center.x)<=50)
-                {
-                    _velMsg.linear.y = 0;
-                    _velMsg.linear.x = 0;
-                    _velMsg.linear.z = 0;
-                    ROS_INFO("goodgoodgood");
-                }
-                else
-                {
-                    _velMsg.linear.y = PID_P * dx * 0.05;
-                    ROS_INFO("dx=%f p=%f", dx, _velMsg.linear.y);
-                }
-                _catchClock = ros::Time::now();
+            //     if(abs(_cameraInfo.width/2 - _pedestrainData.center.x)<=100)
+            //     {
+            //         _velMsg.linear.y = 0;
+            //         _velMsg.linear.x = 0;
+            //         _velMsg.linear.z = 0;
+            //         ROS_INFO("goodgoodgood");
+            //     }
+            //     else
+            //     {
+            //         _velMsg.linear.y = PID_P * dx * 0.05;
+            //         ROS_INFO("dx=%f p=%f", dx, _velMsg.linear.y);
+            //     }
+            //     _catchClock = ros::Time::now();
 
 
-            }
+            // }
             if(_controlState == "TRACK")
             {
+                _velMsg.linear.y = 10;
                 vel_pub.publish(_velMsg);
             }
             
+        }
+        void positionCallback(const geometry_msgs::PoseStamped::ConstPtr& msg) {
+            if (std::fabs(msg->pose.position.x - _pose.pose.position.x) < 0.1 &&
+                std::fabs(msg->pose.position.y - _pose.pose.position.y) < 0.1 &&
+                std::fabs(msg->pose.position.z - _pose.pose.position.z) < 0.1) {
+                _positionReached = true;
+            }
         }
 
  
@@ -251,50 +282,57 @@ int main(int argc, char **argv)
     ros::Rate _rate(20.0);
     ActionUAV _ActionUAV(nh);
     ros::Time _landTimeTest = ros::Time::now();
-    ROS_INFO("START!");
-    int x =0 ;
-    while(ros::ok() && x<60*10)
+
+    
+    enum Task {
+        TAKEOFF,
+        GO_TO_POSITION,
+        LAND
+    };
+    std::vector<Task> _task;
+    int _taskNum = 0;
+    bool _success=false;
+
+    _task.push_back(TAKEOFF);
+    _task.push_back(GO_TO_POSITION);
+    _task.push_back(LAND);
+    
+    while(ros::ok() && _task.size() > 0)
     {
         _ActionUAV.serviceCall();
+        switch (_task[_taskNum])
+        {
+            case TAKEOFF:
+                // _success = _ActionUAV.setPoint(5,5,5);
+                _success = _ActionUAV.takeOff(2.5);
+                break;
+
+            case GO_TO_POSITION:
+                _success = _ActionUAV.setPoint(10,5,5);
+                break;
+            
+            case LAND:
+                _ActionUAV.land();
+
+            default:
+                ROS_INFO("No match mission");
+                _success = false;
+
+        }
+        if(_success)
+        {
+            ROS_INFO("SUCCESS");
+            _taskNum ++;
+        }
+            
         
-        _ActionUAV.setControlState("POSITION");
-        _ActionUAV.takeOff(2.5);
+        
+        
         
         ros::spinOnce();
         _rate.sleep();
-        x++;
-    }
-    x=0;
-    while(ros::ok() && x<50*10)
-    {
-        _ActionUAV.serviceCall();
-        _ActionUAV.setControlState("TRACK");
-        _ActionUAV.decideToOpenTrack(true);
-        
-
-        ros::spinOnce();
-        _rate.sleep();
-        x++;
-    }
-    x=0;
-    while(ros::ok() && x<50*10)
-    {
-
-        _ActionUAV.serviceCall();
-        _ActionUAV.setControlState("LAND");
-        _ActionUAV.land();
-        ros::spinOnce();
-        _rate.sleep();
-        x++;
     }
 
-    // for(int i = 0; ros::ok() && i < 10*5; ++i){
-    //     _ActionUAV.serviceCall("LAND");
-    //     _ActionUAV.test(false);
-    //     ros::spinOnce();
-    //     _rate.sleep();
-
-    // }
 
     
     
