@@ -117,10 +117,12 @@ catkin_package(
 # add_executable(test_fly src/test_fly.cpp)
 
 
-add_executable(action src/action.cpp)
-target_link_libraries(action ${catkin_LIBRARIES})
-add_executable(takeoff_test src/takeoff_test.cpp)
-target_link_libraries(takeoff_test ${catkin_LIBRARIES})
+add_executable(main src/main.cpp src/CommunicationManager.cpp src/TaskManager.cpp)
+target_link_libraries(main ${catkin_LIBRARIES})
+
+# add_executable(action src/action.cpp)
+# target_link_libraries(action ${catkin_LIBRARIES})
+
 
 
 # target_link_libraries(test_fly ${catkin_LIBRARIES})
