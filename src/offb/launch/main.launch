@@ -2,11 +2,19 @@
     <param name="height" value="3"/>
 
     <arg name="x" value="main"/>
-    <node pkg="offb" type="$(arg x)" name="$(arg x)" required="true" output="screen" />
-    <!-- <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch"></include> -->
+    <!-- <node pkg="offb" type="$(arg x)" name="$(arg x)" required="true" output="screen" /> -->
+    <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch">
+          <param name="image_topic" value="/iris_depth_camera/camera/rgb/image_raw"/>
+    </include>
     <node pkg="tf" type="static_transform_publisher" name="link_broadcaster" args="0.1 0 0 0 0 0 iris::base_link camera_link 100" />
-    <include file="$(find offb)/launch/mavros_posix_sitl.launch"></include>
+    
+    <include file="$(find px4)/launch/mavros_posix_sitl.launch">
+        <arg name="world" value = "$(find offb)/worlds/test_obstacle.world"/>
+        <arg name="vehicle" value= "iris_depth_camera"/>
+        <arg name="respawn_gazebo" value="true"/>
+        <arg name="respawn_mavros" value="true"/>
+    </include>
+    
     <param name="use_sim_time" value="true"/>
-
 
 </launch>
