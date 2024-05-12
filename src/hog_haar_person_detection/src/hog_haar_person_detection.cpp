@@ -52,7 +52,6 @@ public:
 
     // Publish detected faces and pedestrians.
     pedestrians_pub_ = nh_.advertise<hog_haar_person_detection::Pedestrians>("/person_detection/pedestrians", 1000);
-    pedestrian_data= nh_.advertise<hog_haar_person_detection::BoundingBox>("/person_detection/pedestrian/data", 1000);
 
     cv::namedWindow(OPENCV_WINDOW);
   }
@@ -105,7 +104,6 @@ public:
       pedestrian.width = detected_pedestrian[i].width;
       pedestrian.height = detected_pedestrian[i].height;
       pedestrians_msg.pedestrians.push_back(pedestrian); //将bounding box加入pedestrians_msg中
-      pedestrian_data.publish(pedestrian);
     }
     pedestrians_pub_.publish(pedestrians_msg);
     
