@@ -73,6 +73,12 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "bit": "cpp"
-    }
+        "bit": "cpp",
+        "csignal": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "regex": "cpp",
+        "future": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
