@@ -7,10 +7,16 @@ int main(int argc, char **argv) {
     CommunicationManager communicationManager;
     TaskManager taskManager(communicationManager);
     ros::Rate _rate(10);
+    taskManager.SetTask(std::bind(&TaskManager::TakeOff,&taskManager,2.5));
+    taskManager.SetTask(std::bind(&TaskManager::Track,&taskManager));
+    taskManager.SetTask(std::bind(&TaskManager::SetPoint,&taskManager,3,3,3));
+    taskManager.SetTask(std::bind(&TaskManager::Land,&taskManager));
+
     while(ros::ok())
     {
         communicationManager.ServiceCall();
-        taskManager.TakeOff(2.4);
+        taskManager.ExecuteTree();
+
         ros::spinOnce();
         _rate.sleep();
 
