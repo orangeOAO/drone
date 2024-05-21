@@ -54,43 +54,65 @@ void TaskManager::SetPoint(double x, double y, double z)
 
 void TaskManager::Track()
 {
-    const float KP = 0.1;
+    
+    const float dt = 0.1; // 控制周期，假设为0.1秒，实际应该与你的更新频率一致
+
     sensor_msgs::CameraInfo cameraInfo = communicationManager.GetCameraInfo();
     hog_haar_person_detection::Pedestrians pedestrianInfo = communicationManager.GetPedestrainCoordination();
+    if (!pedestrianInfo.pedestrians.empty())
+    {
+        _pedestrianDataVector.push_back(pedestrianInfo.pedestrians[0]);
+        _pedestrianDataVector[0] = pedestrianInfo.pedestrians[0];
+        //  std::cout<<"OAO"<<pedestrianInfo.pedestrians[0].center<<"\n";
+    }
     
     geometry_msgs::Twist velMsg;
-    if(!pedestrianInfo.pedestrians.empty())
+    if (!pedestrianInfo.pedestrians.empty())
     {
-        double dx = cameraInfo.width/2 - pedestrianInfo.pedestrians[0].center.x;
 
-        if(abs(dx)<=10)
+        const int MID_PLACE = 0;//_pedestrianDataVector.size() / 2;
+        double errorX = (cameraInfo.width / 2 - _pedestrianDataVector[MID_PLACE].center.x) * 0.1;
+        double errorZ = (cameraInfo.height * 2/ 3 - _pedestrianDataVector[MID_PLACE].center.y) * 0.1;
+
+        _integralX += errorX * dt;
+        _integralZ += errorZ * dt;
+
+        double derivativeX = (errorX - _previousErrorX) / dt;
+        double derivativeZ = (errorZ - _previousErrorZ) / dt;
+        // std::cout<<"errorZ = "<<_pedestrianDataVector[MID_PLACE].center.y <<"\n";
+        double outputX = _Kp * errorX + _Ki * _integralX + _Kd * derivativeX;
+        double outputZ = _Kp * errorZ + _Ki  * _integralZ + _Kd * derivativeZ;
+
+        velMsg.linear.y = outputX;
+        velMsg.linear.z = outputZ; // 根据系统的坐标定义调整符号
+
+        _previousErrorX = errorX;
+        _previousErrorZ = errorZ;
+        std::cout<<"errorX ="<<errorX<<" errorZ="<< errorZ<<"\n";
+        if(abs(errorX)<=10)
         {
             velMsg.linear.y = 0;
-            velMsg.linear.x = 0;
-            velMsg.linear.z = 0;
-            ROS_INFO("goodgoodgood");
-            _positionReached = true;
+            
+            ROS_INFO("complete Z");
+            // _positionReached = true;
         }
-        else
+        if(abs(errorZ) <=10)
         {
-            velMsg.linear.y = KP * dx * 0.05;
+            velMsg.linear.z = 0;
+            ROS_INFO("complete Z");
         }
-        // std::cout<<"OAO"<<pedestrianInfo.pedestrians[0].center<<"\n";
 
+        _pedestrianDataVector.clear();
     }
     else
     {
-        velMsg.linear.y = 0;
         velMsg.linear.x = 0;
         velMsg.linear.z = 0;
-        ROS_INFO("badbadbad");
     }
-    
     communicationManager.SendVelocity(velMsg);
+
     
-
-
-    ROS_INFO("TRACK");
+    
 }
 
 void TaskManager::CheckDeviation(geometry_msgs::PoseStamped currentPose)

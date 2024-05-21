@@ -2,10 +2,11 @@
     <param name="height" value="3"/>
 
     <arg name="x" value="main"/>
-    <!-- <node pkg="offb" type="$(arg x)" name="$(arg x)" required="true" output="screen" /> -->
+    <node pkg="offb" type="$(arg x)" name="$(arg x)" required="true" output="screen" />
     <include file="$(find hog_haar_person_detection)/launch/hog_haar_person_detection.launch">
-          <param name="image_topic" value="/iris_depth_camera/camera/rgb/image_raw"/>
-    </include>
+        <param name="image_topic" value="/iris_depth_camera/camera/rgb/image_raw"/>
+    </include> 
+
     <node pkg="tf" type="static_transform_publisher" name="link_broadcaster" args="0.1 0 0 0 0 0 iris::base_link camera_link 100" />
     
     <include file="$(find px4)/launch/mavros_posix_sitl.launch">

@@ -19,11 +19,21 @@ private:
     bool _positionReached;
     std::vector<std::function<void()>> _taskVector;
     int _taskNum;
+    std::vector<hog_haar_person_detection::BoundingBox> _pedestrianDataVector;
+    float _integralX , _integralZ; // 用于积分项的存储
+    float _previousErrorX , _previousErrorZ; // 上一次的误差，用于微分项
+    float _Kp, _Ki, _Kd; // PID 控制器的增益，需要根据实际情况调整
+
 
 
 public:
     TaskManager(CommunicationManager& manager) :
     communicationManager(manager), _taskNum(0), _positionReached(false) {
+        _integralX = 0.0;
+        _integralZ = 0.0;
+        _previousErrorX = 0.0;
+        _previousErrorZ = 0.0;
+        _Kp = 0.05; _Ki = 0.00001; _Kd = 0.001;
         // ROS_INFO("OAO=%p",communicationManager);
 
 };
