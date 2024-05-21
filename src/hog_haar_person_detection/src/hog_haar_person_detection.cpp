@@ -106,7 +106,7 @@ public:
       pedestrians_msg.pedestrians.push_back(pedestrian); //将bounding box加入pedestrians_msg中
     }
     pedestrians_pub_.publish(pedestrians_msg);
-    
+    pedestrians_msg.pedestrians.clear();
 
     // Publish image to screen.
 
