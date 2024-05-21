@@ -1,2 +1,2 @@
-catkin_make
+catkin build
 roslaunch offb main.launch
