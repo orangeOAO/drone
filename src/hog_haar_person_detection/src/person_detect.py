@@ -12,11 +12,13 @@ class YOLOPersonDetection:
     def __init__(self):
         self.bridge = CvBridge()
         self.model = YOLO("yolov8n.pt")  # Load YOLO model
+        
         self.model.fuse()
+        
         camera_topic = rospy.get_param("image_topic", "/camera/rgb/image_raw")
         self.image_sub = rospy.Subscriber(camera_topic, Image, self.callback)
         self.image_pub = rospy.Publisher("/camera_person_tracker/output_video", Image, queue_size=1)
-        self.pedestrians_pub = rospy.Publisher("/person_detection/pedestrians", Pedestrians, queue_size=10)
+        self.pedestrians_pub = rospy.Publisher("/person_detection/pedestrians", Pedestrians, queue_size=5)
 
     def callback(self, data):
         try:
@@ -27,8 +29,7 @@ class YOLOPersonDetection:
             return
 
         # YOLO inference
-        
-        results = self.model(cv_image)
+        results = self.model(cv_image,imgsz = 320,classes=0)
 
         pedestrians_msg = Pedestrians()
         for result in results:
@@ -36,6 +37,7 @@ class YOLOPersonDetection:
                 cls = box.cls.item()  # Convert tensor to float
                 if self.model.names[int(cls)] == "person":
                     xyxy = box.xyxy.cpu().numpy()[0]
+                    
                     conf = box.conf.item()  # Convert tensor to float
 
                     label = f'{self.model.names[int(cls)]} {conf:.2f}'
