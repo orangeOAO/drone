@@ -72,7 +72,7 @@ void TaskManager::Track()
 
         const int MID_PLACE = 0;//_pedestrianDataVector.size() / 2;
         double errorX = (cameraInfo.width / 2 - _pedestrianDataVector[MID_PLACE].center.x) * 0.1;
-        double errorZ = (cameraInfo.height * 2/ 3 - _pedestrianDataVector[MID_PLACE].center.y) * 0.1;
+        double errorZ = (cameraInfo.height /2 +30 - _pedestrianDataVector[MID_PLACE].center.y) * 0.1;
 
         _integralX += errorX * dt;
         _integralZ += errorZ * dt;
@@ -84,7 +84,7 @@ void TaskManager::Track()
         double outputZ = _Kp * errorZ + _Ki  * _integralZ + _Kd * derivativeZ;
 
         velMsg.linear.y = outputX;
-        velMsg.linear.z = outputZ; // 根据系统的坐标定义调整符号
+        velMsg.linear.z = outputZ; 
 
         _previousErrorX = errorX;
         _previousErrorZ = errorZ;
@@ -127,6 +127,20 @@ void TaskManager::CheckDeviation(geometry_msgs::PoseStamped currentPose)
     _positionReached = false;
 }
 
+void TaskManager::TrackInGazebo()
+{
+    _pose = communicationManager.GetModelPose("pedestrian");
+    // ROS_INFO("Model Pose: [x: %f, y: %f, z: %f, qx: %f, qy: %f, qz: %f, qw: %f]\n",
+    //             _pose.position.x, _pose.position.y, _pose.position.z,
+    //             _pose.orientation.x, _pose.orientation.y, _pose.orientation.z, _pose.orientation.w);
+    geometry_msgs::PoseStamped sendPose;
+    sendPose.header.frame_id = "send model-pose to UAC";
+    sendPose.header.stamp = ros::Time();
+    sendPose.pose.position.y = _pose.position.y;
+    sendPose.pose.position.z = _pose.position.z+1.0;
+    communicationManager.SendPose(sendPose);
+
+}
 
 
 

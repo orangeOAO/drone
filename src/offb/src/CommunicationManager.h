@@ -10,6 +10,10 @@
 #include <sensor_msgs/CameraInfo.h>
 #include <geometry_msgs/Twist.h>
 #include <tf/transform_listener.h>
+#include <gazebo_msgs/GetModelState.h>
+#include <gazebo_msgs/GetModelStateRequest.h>
+#include <gazebo_msgs/GetModelStateResponse.h>
+#include <geometry_msgs/Pose.h>
 
 #include <hog_haar_person_detection/Faces.h>
 #include <hog_haar_person_detection/Pedestrians.h>
@@ -21,6 +25,8 @@ private:
     ros::ServiceClient arming_client;
     ros::ServiceClient set_mode_client;
     ros::ServiceClient land_client;
+    ros::ServiceClient gazebo_client;
+
 
     mavros_msgs::CommandBool arm_cmd;
     mavros_msgs::SetMode offb_set_mode;
@@ -63,6 +69,7 @@ public:
     void OffboardVehicle(std::string mode);
 
     void ServiceCall(const std::string& mode= "OFFBOARD");
+    geometry_msgs::Pose GetModelPose(const std::string modelName="pedestrian");
 
     geometry_msgs::PoseStamped GetCurrentPose();
     hog_haar_person_detection::Pedestrians GetPedestrainCoordination();

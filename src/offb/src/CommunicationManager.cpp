@@ -11,6 +11,7 @@ CommunicationManager::CommunicationManager()
         this->_cameraInfo = *msg;
     }
     );
+    gazebo_client = nh.serviceClient<gazebo_msgs::GetModelState>("/gazebo/get_model_state");
 
     land_client = nh.serviceClient<mavros_msgs::CommandTOL>("/mavros/cmd/land");
     _pos_sub = nh.subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose", 10, &CommunicationManager::positionCallback, this);
@@ -95,5 +96,20 @@ geometry_msgs::PoseStamped CommunicationManager::GetCurrentPose()
 hog_haar_person_detection::Pedestrians CommunicationManager::GetPedestrainCoordination()
 {
     return _pedestrianData;
+}
+
+geometry_msgs::Pose CommunicationManager::GetModelPose(const std::string modelName)
+{
+
+    gazebo_msgs::GetModelState srv;
+    srv.request.model_name = modelName;
+    srv.request.relative_entity_name = "world";
+
+    if (gazebo_client.call(srv)) {
+        return srv.response.pose;
+    } else {
+        ROS_ERROR("Failed to call service get_model_state");
+        return geometry_msgs::Pose();
+    }
 }
 
